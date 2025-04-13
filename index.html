@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid Mubarak Greetings</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Amiri', serif;
+            background-color: #0a3200;
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle, #0a3200, #051a00);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .greeting {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            color: #f8f8f8;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            font-family: 'Scheherazade New', serif;
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        .name-box-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+        }
+        
+        .name-box-container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .name-box {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+        
+        .name-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: 2px solid #d4af37;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+            font-family: 'Amiri', serif;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .name-input:focus {
+            outline: none;
+            border-color: #f8f8f8;
+            box-shadow: 0 0 10px rgba(248, 248, 248, 0.5);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, #8b0000, #a52a2a);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Amiri', serif;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(to right, #a52a2a, #8b0000);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .message {
+            display: none;
+            margin-top: 40px;
+            background: linear-gradient(135deg, rgba(10, 50, 0, 0.8), rgba(5, 26, 0, 0.9));
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        .message h2 {
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-family: 'Scheherazade New', serif;
+        }
+        
+        .message p {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .holy-sites {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .holy-sites img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            border: 2px solid #d4af37;
+        }
+        
+        .eid-message {
+            display: none;
+            margin-top: 40px;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.8), rgba(165, 42, 42, 0.9));
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        .eid-message h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 20px;
+            font-family: 'Scheherazade New', serif;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .signature {
+            font-family: 'Scheherazade New', serif;
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin-top: 30px;
+            text-align: right;
+        }
+        
+        .decoration {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(212, 175, 55, 0.3);
+            z-index: -1;
+        }
+        
+        .decoration.top-left {
+            top: 20px;
+            left: 20px;
+            transform: rotate(-30deg);
+        }
+        
+        .decoration.top-right {
+            top: 20px;
+            right: 20px;
+            transform: rotate(30deg);
+        }
+        
+        .decoration.bottom-left {
+            bottom: 20px;
+            left: 20px;
+            transform: rotate(30deg);
+        }
+        
+        .decoration.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            transform: rotate(-30deg);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .arabic {
+            font-family: 'Scheherazade New', serif;
+            font-size: 1.8rem;
+            margin: 20px 0;
+            color: #d4af37;
+        }
+        
+        @media (max-width: 768px) {
+            .greeting {
+                font-size: 2.5rem;
+            }
+            
+            .message h2, .eid-message h2 {
+                font-size: 2rem;
+            }
+            
+            .message p {
+                font-size: 1.2rem;
+            }
+            
+            .arabic {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="decoration top-left">ﷲ</div>
+        <div class="decoration top-right">ﷺ</div>
+        
+        <h1 class="greeting">السلام عليكم</h1>
+        
+        <div class="name-box-container" id="nameBoxContainer">
+            <div class="name-box">
+                <input type="text" id="nameInput" class="name-input" placeholder="Please enter your name">
+                <button id="submitBtn" class="submit-btn">Submit</button>
+            </div>
+        </div>
+        
+        <div class="message" id="message">
+            <h2>Congratulations!</h2>
+            <p id="personalMessage">Wait for your reward</p>
+            <div class="arabic">جزاك الله خيرا</div>
+            
+            <div class="holy-sites">
+                <img src="https://www.example.com/kaba-masjidnabvi-joined.jpg" alt="Kaaba and Masjid-e-Nabvi" onerror="this.src='https://via.placeholder.com/800x400/0a3200/d4af37?text=Kaaba+and+Masjid-e-Nabvi'">
+            </div>
+        </div>
+        
+        <div class="eid-message" id="eidMessage">
+            <h2 id="eidGreeting">Eid Mubarak!</h2>
+            <div class="arabic">تقبل الله منا ومنكم</div>
+            <p>May Allah accept your good deeds, forgive your transgressions, and ease the suffering of all people around the globe.</p>
+            <div class="signature">SYED MUHAMMAD ATTA FARID SHAH</div>
+        </div>
+        
+        <div class="decoration bottom-left">ﷲ</div>
+        <div class="decoration bottom-right">ﷺ</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show name box after 5 seconds
+            setTimeout(function() {
+                document.getElementById('nameBoxContainer').classList.add('show');
+            }, 5000);
+            
+            // Handle form submission
+            document.getElementById('submitBtn').addEventListener('click', function() {
+                const name = document.getElementById('nameInput').value.trim();
+                
+                if (name) {
+                    // Show message
+                    document.getElementById('personalMessage').textContent = `Dear ${name}, wait for your reward`;
+                    document.getElementById('message').style.display = 'block';
+                    
+                    // Scroll to message
+                    document.getElementById('message').scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Show Eid message after 5 seconds
+                    setTimeout(function() {
+                        document.getElementById('eidGreeting').textContent = `Eid Mubarak ${name}!`;
+                        document.getElementById('eidMessage').style.display = 'block';
+                        
+                        // Scroll to Eid message
+                        document.getElementById('eidMessage').scrollIntoView({ behavior: 'smooth' });
+                    }, 5000);
+                } else {
+                    alert('Please enter your name');
+                }
+            });
+            
+            // Also handle Enter key in name input
+            document.getElementById('nameInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('submitBtn').click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
